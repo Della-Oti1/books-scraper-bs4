@@ -55,7 +55,7 @@ def scrape_page(url: str) -> List[Dict]:
             "description": description,
             "product_url": product_url
         })
-        time.sleep(0.5)
+        time.sleep(0.1)
     return items
 
 def next_page_url(soup: BeautifulSoup, current_url: str):
@@ -79,7 +79,7 @@ def main():
         rows.extend(scrape_page(url))
         url = next_page_url(soup, url)
         page += 1
-        time.sleep(1)
+        time.sleep(0.2)
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=[
             "title","price_gbp","stock","rating","category","description","product_url"
